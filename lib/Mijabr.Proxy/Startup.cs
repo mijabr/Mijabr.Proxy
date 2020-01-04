@@ -39,17 +39,15 @@ namespace Mijabr.Proxy
             app.Map("/home", home =>
             {
                 home.RunProxy(context => context
-  //                  .ForwardTo("http://localhost:5002/")
                     .ForwardTo("http://home/home/")
                     .AddXForwardedHeaders()
                     .Send());
             });
 
-//            app.RunProxy(context => context
-//                .ForwardTo("http://localhost:5000/")
-////                .ForwardTo("http://mijabr-home/")
-//                .AddXForwardedHeaders()
-//                .Send());
+            app.RunProxy(context => context
+                .ForwardTo("http://identity/")
+                .AddXForwardedHeaders()
+                .Send());
         }
     }
 }
