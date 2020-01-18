@@ -36,6 +36,14 @@ namespace Mijabr.Proxy
                 await next();
             });
 
+            app.MapWhen(context => context.Request.Path.Equals("/"), home =>
+            {
+                home.RunProxy(context => context
+                    .ForwardTo("http://home/home/")
+                    .AddXForwardedHeaders()
+                    .Send());
+            });
+
             app.Map("/home", home =>
             {
                 home.RunProxy(context => context
