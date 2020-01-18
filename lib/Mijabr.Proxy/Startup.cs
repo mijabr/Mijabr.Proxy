@@ -44,6 +44,14 @@ namespace Mijabr.Proxy
                     .Send());
             });
 
+            app.Map("/scrabble", home =>
+            {
+                home.RunProxy(context => context
+                    .ForwardTo("http://scrabble/scrabble/")
+                    .AddXForwardedHeaders()
+                    .Send());
+            });
+
             app.RunProxy(context => context
                 .ForwardTo("http://identity/")
                 .AddXForwardedHeaders()
