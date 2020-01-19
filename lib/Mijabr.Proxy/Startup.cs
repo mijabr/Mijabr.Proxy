@@ -62,7 +62,6 @@ namespace Mijabr.Proxy
 
             app.RunProxy(context => context
                 .ForwardTo("http://identity/")
-                .AddXForwardedHeaders()
                 .Send());
         }
     }
